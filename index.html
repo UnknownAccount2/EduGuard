@@ -3,45 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Activity Monitor</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    #activity-list { margin-top: 20px; }
-    .activity { margin: 5px 0; padding: 5px; border: 1px solid #ddd; }
-  </style>
+  <title>ClassGuard - Basic Monitor</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Student Activity Monitoring</h1>
-  
-  <div id="activity-list">
-    <h3>Recent Activities</h3>
-    <ul id="activities"></ul>
+  <div class="container">
+    <h1>ClassGuard</h1>
+    <div class="dashboard">
+      <h2>Student Activity Monitor</h2>
+      <ul id="activity-list"></ul>
+    </div>
   </div>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-
-    // Listen for activity updates from the server
-    socket.on('activity-update', (activity) => {
-      const activityList = document.getElementById('activities');
-      const listItem = document.createElement('li');
-      listItem.classList.add('activity');
-      listItem.innerHTML = `${activity.studentId} visited: ${activity.activity} at ${new Date(activity.timestamp).toLocaleTimeString()}`;
-      activityList.appendChild(listItem);
-    });
-
-    // Simulate student activity
-    function simulateStudentActivity() {
-      const activity = {
-        studentId: 'Student 1',
-        activity: 'www.example.com'
-      };
-      socket.emit('new-activity', activity);
-    }
-
-    // Simulate activity every 5 seconds
-    setInterval(simulateStudentActivity, 5000);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
